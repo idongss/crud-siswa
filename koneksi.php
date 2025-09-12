@@ -1,3 +1,3 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "nama_db");
+$conn = new mysqli("localhost", "root", "", "crud_siswa");
 ?>
