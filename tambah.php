@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if (!is_dir('uploads')) mkdir('uploads', 0755, true);
       move_uploaded_file($_FILES['foto']['tmp_name'], 'uploads/' . $fotoName);
     } else {
-      $fotoName = null; // bisa tambahkan error handling
+      die("File foto tidak valid atau terlalu besar.");
     }
   }
 
@@ -36,14 +36,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!doctype html>
 <html lang="id">
-<head><meta charset="utf-8"><title>Tambah Siswa</title><link rel="stylesheet" href="style.css"></head>
+<head>
+  <meta charset="utf-8">
+  <title>Tambah Siswa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
   <h1>Tambah Siswa</h1>
   <form method="post" enctype="multipart/form-data">
     <label>Nama <input type="text" name="nama" required></label><br>
     <label>Foto <input type="file" name="foto" accept="image/*"></label><br>
-    <label>Kelas <input type="text" name="kelas"></label><br>
-    <label>Jurusan <input type="text" name="jurusan"></label><br>
+
+    <label>Kelas
+      <select name="kelas" required>
+        <option value="">-- Pilih Kelas --</option>
+        <option value="X">X</option>
+        <option value="XI">XI</option>
+        <option value="XII">XII</option>
+      </select>
+    </label><br>
+
+    <label>Jurusan
+      <select name="jurusan" required>
+        <option value="">-- Pilih Jurusan --</option>
+        <option value="RPL">RPL</option>
+        <option value="TKJ">TKJ</option>
+        <option value="Multimedia">Multimedia</option>
+        <option value="Akuntansi">Akuntansi</option>
+        <option value="Perkantoran">Perkantoran</option>
+      </select>
+    </label><br>
+
     <label>Email <input type="email" name="email"></label><br>
     <label>No HP <input type="text" name="nohp"></label><br>
     <button type="submit">Simpan</button> <a href="index.php">Batal</a>
